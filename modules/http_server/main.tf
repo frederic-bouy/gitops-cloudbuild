@@ -30,6 +30,12 @@ resource "google_compute_instance" "http_server" {
       image = "debian-cloud/debian-11"
     }
   }
+  
+  shielded_instance_config {
+    enable_secure_boot          = true
+    enable_vtpm                 = true
+    enable_integrity_monitoring = true
+  }
 
   network_interface {
     subnetwork = "${var.subnet}"
